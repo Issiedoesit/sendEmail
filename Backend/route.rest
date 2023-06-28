@@ -1,0 +1,33 @@
+GET http://localhost:3000/
+
+
+###
+GET http://localhost:3000/admin
+
+
+###
+
+POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+    "name": "Isioma Ekwemuka",
+    "username" : "Issie",
+    "email" : "isyekwe@gmail.com",
+    "signUpType": "admin"
+}
+
+###
+
+POST http://localhost:3000/api/sendmail
+Content-Type: application/json
+
+{
+    "email": "benekwemuka@gmail.com",
+    "subject": "Message Two.",
+    "message": "It's been amazing working with you."
+}
+
+###
+
+DELETE http://localhost:3000/delete/Issie
