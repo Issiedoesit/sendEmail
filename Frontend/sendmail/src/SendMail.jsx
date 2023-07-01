@@ -14,6 +14,7 @@ const SendMail = () => {
   // const [users, setUsers] = useState([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   
   const handleChange = (e) => {
@@ -34,6 +35,7 @@ const SendMail = () => {
     e.preventDefault()
     // console.log('Working');
     // console.log(`${import.meta.env.VITE_BASE_URL}/api/sendmail`);
+    setSubmitting(true)
     axios.post(`${import.meta.env.VITE_BASE_URL}/api/sendmail`, data)
     .then((response)=>{
       console.log(response)
@@ -44,6 +46,7 @@ const SendMail = () => {
       {  setMessage(err.message)
         toggleModal()}
       )
+    setSubmitting(false)
   
    }
 
@@ -97,7 +100,7 @@ const SendMail = () => {
           <span className='col-span-3 text-left text-bold font-bold'>Message</span>
           <input onChange={handleChange} type="text" name='message' id='message' className='border rounded-lg px-3 py-2 w-full col-span-9' required defaultValue={data.username} />
         </label>
-        <button type='submit' disable={loading.toString()} className={`bg-blue-500 px-4 py-2 text-white rounded-lg w-fit`}>Submit</button>
+        <button type='submit' disabled={submitting} className={`bg-blue-500 disabled:bg-gray-600 px-4 py-2 text-white rounded-lg w-fit`}>Submit</button>
       </form>
     </div>
   )
