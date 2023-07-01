@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 const SendMail = () => {
   const [data, setData] = useState(
@@ -13,7 +15,6 @@ const SendMail = () => {
 
   // const [users, setUsers] = useState([])
   const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
   
@@ -32,21 +33,23 @@ const SendMail = () => {
   }
 
   const sendEmail = (e) => {
+    setSubmitting(true)
     e.preventDefault()
     // console.log('Working');
     // console.log(`${import.meta.env.VITE_BASE_URL}/api/sendmail`);
-    setSubmitting(true)
     axios.post(`${import.meta.env.VITE_BASE_URL}/api/sendmail`, data)
     .then((response)=>{
       console.log(response)
+      setSubmitting(false)
         setMessage(response.data.message)
         toggleModal()
       })
       .catch((err)=>
-      {  setMessage(err.message)
+      {  
+        setSubmitting(false)
+        setMessage(err.message)
         toggleModal()}
       )
-    setSubmitting(false)
   
    }
 
@@ -83,7 +86,7 @@ const SendMail = () => {
       </div>
   
 
-    <form action="" onSubmit={sendEmail} className="rounded-lg drop-shadow-md max-w-lg mx-auto w-full px-6 py-4 flex flex-col gap-4 items-center border">
+    <form action="" className="rounded-lg drop-shadow-md max-w-lg mx-auto w-full px-6 py-4 flex flex-col gap-4 items-center border">
       <label htmlFor="email" className='w-full grid grid-cols-12 gap-2 items-center'>
           <span className='col-span-3 text-left text-bold font-bold'>Email</span>
           <input onChange={handleChange} type="email" name='email' id='email' className='border rounded-lg px-3 py-2 w-full col-span-9' required defaultValue={data.email} />
@@ -100,7 +103,7 @@ const SendMail = () => {
           <span className='col-span-3 text-left text-bold font-bold'>Message</span>
           <input onChange={handleChange} type="text" name='message' id='message' className='border rounded-lg px-3 py-2 w-full col-span-9' required defaultValue={data.username} />
         </label>
-        <button type='submit' disabled={submitting} className={`bg-blue-500 disabled:bg-gray-600 px-4 py-2 text-white rounded-lg w-fit`}>Submit</button>
+        <button type='button'  onClick={sendEmail} disabled={submitting} className={`bg-blue-500 disabled:bg-gray-600 px-4 py-2 flex items-center justify-center text-white rounded-lg w-fit`}>{submitting ? <Cliploader /> : "Submit"}</button>
       </form>
     </div>
   )
