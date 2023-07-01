@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Nav from './Nav'
 import Posts from './Posts'
-import SendMail from './sendMail'
+import SendMail from './SendMail'
 
 
 function App() {
