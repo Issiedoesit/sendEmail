@@ -79,7 +79,7 @@ const SendMail = () => {
           <div onClick={toggleModal} className='cursor-pointer modal-closer bg-black/40 backdrop-blur-sm fixed w-full h-full top-0 left-0 z-10'>
             
           </div>
-          <div className='text-left w-[40%] py-10 px-5 bg-white m-auto z-20 rounded-lg space-y-8'>
+          <div className='text-left md:w-[40%] py-10 px-5 bg-white m-auto z-20 rounded-lg space-y-8'>
             <h3 className='font-bold text-blue-500 text-2xl'>Action: Send Mail</h3>
             <p><span className='font-bold'>Returned: </span> {message}</p>
           </div>
