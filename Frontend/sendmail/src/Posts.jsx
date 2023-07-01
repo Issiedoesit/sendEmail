@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
 import './App.css'
 
 const Posts = () => {
@@ -17,6 +18,8 @@ const Posts = () => {
   const [users, setUsers] = useState([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+
 
     const handleUsers = () => {
       axios.get(`${import.meta.env.VITE_BASE_URL}`)
@@ -44,12 +47,18 @@ const Posts = () => {
     }
 
     const makeUser = (e) => {
+      setSubmitting(true)
       e.preventDefault()
         axios.post(`${import.meta.env.VITE_BASE_URL}/post`, data)
       .then((response)=>{
+        setSubmitting(false)
         console.log(response)
           handleUsers()
         })
+      .catch((err) => {
+        setSubmitting(false)
+        console.log("Make user:" , err);
+      })
      }
 
      const deleteUser = (user) => {
@@ -157,7 +166,7 @@ const Posts = () => {
           </div>
       </div>
 
-      <form action="" onSubmit={makeUser} className="rounded-lg shadow-md px-6 py-4 flex flex-col gap-4 items-center border">
+      <form action="" className="rounded-lg shadow-md px-6 py-4 flex flex-col gap-4 items-center border">
         <label htmlFor="name" className='w-full grid grid-cols-12 gap-2 items-center'>
           <span className='col-span-3 text-left text-bold font-bold'>Name</span>
           <input onChange={handleChange} type="text" name='name' id='name' className='border rounded-lg px-3 py-2 w-full col-span-9' required defaultValue={data.name} />
@@ -177,7 +186,7 @@ const Posts = () => {
           <span className='col-span-3 text-left text-bold font-bold'>Email</span>
           <input onChange={handleChange} type="email" name='email' id='email' className='border rounded-lg px-3 py-2 w-full col-span-9' required defaultValue={data.email} />
         </label>
-        <button type='submit' disable={loading} className={`bg-blue-500 px-4 py-2 text-white rounded-lg w-fit`}>Submit</button>
+        <button type='button'  onClick={makeUser} disabled={submitting} className={`bg-blue-500 disabled:bg-gray-600 px-4 py-2 flex items-center justify-center text-white rounded-lg w-fit`}>{submitting ? <ClipLoader /> : "Submit"}</button>
       </form>
     </div>
   )
