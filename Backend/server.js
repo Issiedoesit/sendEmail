@@ -57,7 +57,10 @@ app.post('/api/sendmail', async (req, res)=>{
 
 })
 
-
+app.delete('/delete/all', (req, res) => {
+    users = []
+    res.status(200).send(`User: All users deleted successfully`);
+});
 
 app.delete('/delete/:username', (req, res) => {
     let deleteIndex =  users.findIndex((user) => user.username === req.params.username);
@@ -67,10 +70,6 @@ app.delete('/delete/:username', (req, res) => {
     } else {
       res.status(404).send('User not found');
     }
-});
-app.delete('/delete/all', (req, res) => {
-    users = []
-    res.status(200).send(`User: All users deleted successfully`);
 });
 
 
