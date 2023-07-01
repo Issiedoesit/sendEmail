@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import ClipLoader from "react-spinners/ClipLoader";
 import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 
 const Posts = () => {
@@ -48,6 +50,10 @@ const Posts = () => {
     const makeUser = (e) => {
 
       if(!data.name || !data.email || !data.username){
+        toast.error("All fields required !", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose:2500
+        });
         return
       }
 
@@ -207,6 +213,7 @@ const Posts = () => {
         </label>
         <button type='button'  onClick={makeUser} disabled={submitting} className={`bg-blue-500 disabled:bg-gray-600 px-4 py-2 flex items-center justify-center text-white rounded-lg w-fit`}>{submitting ? <ClipLoader /> : "Submit"}</button>
       </form>
+      <ToastContainer />
     </div>
   )
 }
