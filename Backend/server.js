@@ -28,6 +28,7 @@ app.get("/:signUpType", (req, res)=>{
 app.post('/post', (req, res)=>{
     // res.send(req.body)
     let user = {
+        id:req.body.id,
         name: req.body.name,
         username: req.body.username,
         email:req.body.email,
@@ -66,7 +67,11 @@ app.delete('/delete/:username', (req, res) => {
     } else {
       res.status(404).send('User not found');
     }
- });
+});
+app.delete('/delete/all', (req, res) => {
+    users = []
+    res.status(200).send(`User: All users deleted successfully`);
+});
 
 
 const port = process.env.PORT || 3000

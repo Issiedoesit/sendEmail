@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import ClipLoader from "react-spinners/ClipLoader";
+import { v4 as uuidv4 } from 'uuid';
 import './App.css'
 
 const Posts = () => {
   const [data, setData] = useState(
     {   
+      "id":uuidv4(),
       "name" : "",
       "username" : "",
       "email": "",
@@ -74,6 +76,21 @@ const Posts = () => {
 
           })
      }
+
+     
+     const deleteAll = () => {
+      setLoading(true)
+       axios.delete(`${import.meta.env.VITE_BASE_URL}/delete/all`)
+       .then((response)=>{
+             if(response.status === 200){
+               handleUsers()
+             }
+             setMessage(response.data)
+             toggleModal()
+             setLoading(false)
+         })
+    }
+
 
 
      const toggleModal = () => {
