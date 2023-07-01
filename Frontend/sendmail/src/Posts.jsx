@@ -14,9 +14,6 @@ const Posts = () => {
       "signUpType": "user"
     }
   )
-
-  const [query, setQuery] = useState('')
-
   const [users, setUsers] = useState([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
@@ -49,6 +46,11 @@ const Posts = () => {
     }
 
     const makeUser = (e) => {
+
+      if(!data.name || !data.email || !data.username){
+        return
+      }
+
       setSubmitting(true)
       e.preventDefault()
         axios.post(`${import.meta.env.VITE_BASE_URL}/post`, data)
@@ -126,11 +128,10 @@ const Posts = () => {
   return (
 
     <div className="">
-        {query}
-      <p>{data.name}</p>
+      {/* <p>{data.name}</p>
       <p>{data.username}</p>
       <p>{data.signUpType}</p>
-      <p>{data.email}</p>
+      <p>{data.email}</p> */}
 
       <div className='flex py-6 gap-6 overflow-x-auto'>
         <button type='button' onClick={allUsers} className="bg-black rounded-3xl whitespace-nowrap text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">Fetch Posts</button> 
@@ -195,7 +196,7 @@ const Posts = () => {
         </label>
         <label htmlFor="signUpType" className='w-full grid grid-cols-12 gap-2 items-center'>
           <span className='col-span-3 text-left text-bold font-bold'>Sign Up as</span>
-          <select onChange={handleChange} name="signUpType" id="signUpType" required className='border rounded-lg px-3 py-2 w-full col-span-9'>
+          <select onChange={handleChange} name="signUpType" id="signUpType" required className='border rounded-lg px-3 py-2 w-full col-span-9 bg-transparent h-11'>
               <option value="user" selected>User</option>
               <option value="admin">Admin</option>
           </select>
