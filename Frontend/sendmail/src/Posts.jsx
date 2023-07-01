@@ -132,11 +132,11 @@ const Posts = () => {
       <p>{data.signUpType}</p>
       <p>{data.email}</p>
 
-      <div className='flex py-6 gap-6'>
-        <button type='button' onClick={allUsers} className="bg-black rounded-3xl text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">Fetch Posts</button> 
-        <button type='button' onClick={()=>filterByType('user')} className="bg-black rounded-3xl text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">All Users</button> 
-        <button type='button' onClick={()=>filterByType('admin')} className="bg-black rounded-3xl text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">All Admins</button> 
-        <button type='button' onClick={deleteAll} className="bg-black rounded-3xl text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">Delete All</button> 
+      <div className='flex py-6 gap-6 overflow-x-auto'>
+        <button type='button' onClick={allUsers} className="bg-black rounded-3xl whitespace-nowrap text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">Fetch Posts</button> 
+        <button type='button' onClick={()=>filterByType('user')} className="bg-black rounded-3xl whitespace-nowrap text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">All Users</button> 
+        <button type='button' onClick={()=>filterByType('admin')} className="bg-black rounded-3xl whitespace-nowrap text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">All Admins</button> 
+        <button type='button' onClick={deleteAll} className="bg-black rounded-3xl whitespace-nowrap text-fuchsia-500 px-6 py-3 hover:bg-fuchsia-500 hover:text-white hover:shadow-md transition-all duration-500 ease-in-out">Delete All</button> 
       </div>
         <div className='grid grid-cols-4 gap-4 uppercase font-bold divide-x border border-b-fuchsia-500'>
            <p className='py-2'>Name</p> 
