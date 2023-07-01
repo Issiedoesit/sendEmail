@@ -68,9 +68,9 @@ const SendMail = () => {
             </div>
           </div>
       </div>
-       <p>{data.email}</p>
+       {/* <p>{data.email}</p>
       <p>{data.subject}</p>
-      <p>{data.message}</p>
+      <p>{data.message}</p> */}
 
       <div id='modal' className='hidden fixed w-full h-full top-0 left-0 py-20 z-30'>
           <div onClick={toggleModal} className='cursor-pointer modal-closer bg-black/40 backdrop-blur-sm fixed w-full h-full top-0 left-0 z-10'>
