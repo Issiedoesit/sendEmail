@@ -103,7 +103,7 @@ const SendMail = () => {
           <span className='col-span-3 text-left text-bold font-bold'>Message</span>
           <input onChange={handleChange} type="text" name='message' id='message' className='border rounded-lg px-3 py-2 w-full col-span-9' required defaultValue={data.username} />
         </label>
-        <button type='button'  onClick={sendEmail} disabled={submitting} className={`bg-blue-500 disabled:bg-gray-600 px-4 py-2 flex items-center justify-center text-white rounded-lg w-fit`}>{submitting ? <Cliploader /> : "Submit"}</button>
+        <button type='button'  onClick={sendEmail} disabled={submitting} className={`bg-blue-500 disabled:bg-gray-600 px-4 py-2 flex items-center justify-center text-white rounded-lg w-fit`}>{submitting ? <ClipLoader /> : "Submit"}</button>
       </form>
     </div>
   )
